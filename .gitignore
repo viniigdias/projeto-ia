@@ -1,0 +1,5 @@
+.venv/ venv/ ENV/
+
+pycache/*.pyc *.pyo *.pyd
+
+.vscode/ .idea/ *.swp *.swo 
