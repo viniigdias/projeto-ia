@@ -1,89 +1,96 @@
+📘 Projeto: Classificação Banknote Authentication (IA)
 
-Projeto - Classificação Banknote Authentication (IA)
-Este projeto implementa e avalia classificadores KNN e Naive Bayes (Univariado e Multivariado) do zero, utilizando apenas Python e NumPy, para o dataset Banknote Authentication da UCI.
+Este projeto implementa, do zero, três classificadores supervisionados utilizando apenas Python e NumPy — sem scikit-learn ou pandas:
 
-O código foi desenvolvido sem o uso de bibliotecas como scikit-learn ou pandas, focando na implementação manual dos algoritmos e da lógica de validação.
+✅ K-Nearest Neighbors (KNN)
+✅ Naive Bayes Gaussiano Univariado
+✅ Naive Bayes Gaussiano Multivariado
 
-Estrutura do Projeto
+O objetivo é analisar o desempenho desses modelos no dataset Banknote Authentication da UCI, incluindo validação cruzada estratificada e comparação de resultados.
+
+📂 Estrutura do Projeto
 /
-|-- main.py             # Ponto de entrada principal, CLI, orquestração
-|-- README.md           # Este arquivo
-|-- .gitignore          # Ignora arquivos desnecessários (ex: .venv)
+|-- main.py                       # Ponto de entrada da aplicação (CLI + execução completa)
+|-- README.md                     # Este arquivo
+|-- .gitignore
 |-- data/
-|   |-- data_banknote_authentication.csv # (Deve ser baixado manualmente)
+|   └── data_banknote_authentication.csv   # (Baixar manualmente)
 |-- src/
-    |-- carregar_data.py  # Carregamento e pré-processamento do CSV
-    |-- metricas.py       # Funções de métricas (Acurácia, Precisão, F1)
-    |-- modelo_knn.py     # Implementação do K-Nearest Neighbors
-    |-- modelo_bayes_uni.py# Implementação do Bayes Gaussiano Univariado
-    |-- modelo_bayes_multi.py# Implementação do Bayes Gaussiano Multivariado
-    |-- cv.py             # Lógica de Validação Cruzada (10-fold estratificado)
-    |-- timing.py         # Decorador @medir_tempo
-    |-- utils.py          # Normalizador, sementes e testes de sanidade
-Setup do Ambiente
-Clone o repositório (opcional, se já baixou):
+    |-- carregar_data.py          # Leitura e pré-processamento do CSV
+    |-- metricas.py               # Métricas: Acurácia, Precisão, F1-score
+    |-- modelo_knn.py             # Implementação do algoritmo KNN
+    |-- modelo_bayes_uni.py       # Naive Bayes Gaussiano Univariado
+    |-- modelo_bayes_multi.py     # Naive Bayes Gaussiano Multivariado
+    |-- cv.py                     # Validação Cruzada Estratificada (10-fold)
+    |-- timing.py                 # Decorador @medir_tempo
+    |-- utils.py                  # Normalização, semente e utilitários
 
-Bash
+🧪 Pré-Requisitos
 
+Python 3.9+
+
+Pip
+
+Git (opcional)
+
+⚙️ Setup do Ambiente
+1️⃣ Clone o repositório (opcional)
 git clone https://github.com/SEU_USUARIO/SEU_REPO.git
 cd SEU_REPO
-Crie um ambiente virtual:
 
-Bash
-
+2️⃣ Crie um ambiente virtual
 python -m venv .venv
-Ative o ambiente:
+
+3️⃣ Ative o ambiente
 
 Linux/macOS:
 
-Bash
-
 source .venv/bin/activate
+
+
 Windows (CMD):
 
-Bash
-
 .\.venv\Scripts\activate
+
+
 Windows (PowerShell):
 
-Bash
-
 .\.venv\Scripts\Activate.ps1
-Instale as dependências:
 
-Bash
-
+4️⃣ Instale as dependências
 pip install numpy
-Baixe o Dataset:
+
+📥 Baixar o Dataset
 
 Acesse: https://archive.ics.uci.edu/ml/datasets/banknote+authentication
 
-Clique em "Data Folder".
+Clique em "Data Folder"
 
-Baixe o arquivo data_banknote_authentication.csv.
+Baixe o arquivo: data_banknote_authentication.csv
 
-Salve o arquivo na pasta data/ (na raiz do projeto).
+Coloque o arquivo em: data/ na raiz do projeto
 
-Execução
-O script principal main.py roda todos os testes, carrega os dados, executa a validação cruzada 10-fold completa (incluindo a seleção de K para o KNN) e imprime a tabela de resultados.
+🚀 Execução
 
-Comando Padrão (Sem normalização):
+O arquivo main.py:
 
-Bash
+Carrega os dados
 
+Executa validação cruzada estratificada (10-fold)
+
+Seleciona o melhor K para o KNN
+
+Compara todos os classificadores
+
+Exibe a tabela final de resultados
+
+▶️ Rodar com configuração padrão
 python main.py
-Comando Opcional (Com normalização Z-Score):
 
-Bash
-
+🧮 Rodar com normalização Z-Score
 python main.py --normalizar
-Outros Argumentos da CLI:
---knn_k_range [K ...]
 
-Define a lista de K's para a seleção (Padrão: 1 3 5 7 9 11).
-
-Ex: python main.py --knn_k_range 1 3 5
-
---bayes_multi_reg [float]
-
-Define o epsilon de regularização do Bayes Multi (Padrão: 1e-6).
+🛠️ Argumentos da CLI
+Argumento	Descrição	Exemplo
+--knn_k_range [K ...]	Lista de valores de K para testar no KNN	python main.py --knn_k_range 1 3 5
+--bayes_multi_reg [float]	Valor de regularização (ε) do Bayes Multivariado (padrão: 1e-6)	python main.py --bayes_multi_reg 1e-5
